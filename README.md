@@ -5,4 +5,4 @@
 
 
 Example of comparing .json files:
-[![asciicast](https://asciinema.org/a/l98qgZGwXBTSXo1nNZzxC8PkM.svg)](https://asciinema.org/a/l98qgZGwXBTSXo1nNZzxC8PkM)
+[![asciicast](https://asciinema.org/a/MbmuxpTLRrDZZ2uw9Fuf41VqZ.svg)](https://asciinema.org/a/MbmuxpTLRrDZZ2uw9Fuf41VqZ)
