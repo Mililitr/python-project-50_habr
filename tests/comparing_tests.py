@@ -17,3 +17,7 @@ class TestGenerateDiff(unittest.TestCase):
         expected_output = '{\n  "common": {\n    "setting1": "Value 1"\n-   "setting2": 200\n+   "setting3": {\n+     "key": "value"\n+   }\n-   "setting3": {\n-     "key": "value"\n-   }\n    "setting6": {\n      "key": "value"\n+     "ops": "vops"\n    }\n  }\n  "group1": {\n-   "baz": "bas"\n+   "baz": "bars"\n    "foo": "bar"\n  }\n- "group2": {\n-   "abc": "12345"\n-   "deep": {\n-     "id": 45\n-   }\n- }\n+ "group3": {\n+   "fee": 100500\n+   "deep": {\n+     "id": {\n+       "number": 45\n+     }\n+   }\n+ }\n}'
         self.assertEqual(generate_diff(file1_path, file2_path), expected_output)
 
+
+if __name__ == "__main__":
+    unittest.main()
+
