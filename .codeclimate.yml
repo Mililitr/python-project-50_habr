@@ -4,6 +4,5 @@ engines:
     config:
       exclude_paths:
         - "**/.venv/**"
-        - "myenv/**"
-
+        - "**/myenv/**"
 
