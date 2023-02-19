@@ -13,7 +13,7 @@ python = "^3.10"
 
 
 [tool.poetry.scripts]
-gendiff = "gendiff.scripts.gendiff:main"
+gendiff = "gendiff.cli:main --format=json"
 
 
 [build-system]
