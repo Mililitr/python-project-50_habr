@@ -8,6 +8,7 @@ FORMATTERS = {
     'json': json,
 }
 
+
 def main():
     parser = argparse.ArgumentParser(
         description='Compares two configuration files and shows a difference.'
@@ -23,6 +24,6 @@ def main():
     diff = generate_diff(args.first_file, args.second_file)
     print(formatter.format(diff))
 
+
 if __name__ == '__main__':
     main()
-
