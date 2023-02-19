@@ -1,0 +1,9 @@
+engines:
+  maintainability:
+    enabled: true
+    config:
+      exclude_paths:
+        - "**/.venv/**"
+        - "**/myenv/**"
+
+
