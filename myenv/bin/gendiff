@@ -1,6 +1,0 @@
-#!/home/hardduck/python-project-50/myenv/bin/python
-import sys
-from gendiff.cli import main --format=json
-
-if __name__ == '__main__':
-    sys.exit(main --format=json())
