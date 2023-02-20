@@ -1,6 +1,6 @@
 .venv
 venv
-myenv
+myenv/
 dist
 __pycache__
 *.pyc
