@@ -3,22 +3,20 @@ import json
 
 def generate_diff(file_path1, file_path2):
     with open(file_path1) as f1, open(file_path2) as f2:
-        file1 = json.load(f1)
-        file2 = json.load(f2)
+        dict1 = json.load(f1)
+        dict2 = json.load(f2)
 
-    keys = sorted(file1.keys() | file2.keys())
-
-    diff = dict()
-
-    for key in keys:
-        if key in file1 and key in file2:
-            if file1[key] == file2[key]:
-                diff[key] = {'value': file1[key], 'type': 'unchanged'}
-            else:
-                diff[key] = {'value1': file1[key], 'value2': file2[key], 'type': 'changed'}
-        elif key in file1:
-            diff[key] = {'value': file1[key], 'type': 'removed'}
+    diff = {}
+    keys = dict1.keys() | dict2.keys()
+    for key in sorted(keys):
+        if key in dict1 and key not in dict2:
+            diff[f'- {key}'] = dict1[key]
+        elif key in dict2 and key not in dict1:
+            diff[f'+ {key}'] = dict2[key]
+        elif dict1[key] != dict2[key]:
+            diff[f'- {key}'] = dict1[key]
+            diff[f'+ {key}'] = dict2[key]
         else:
-            diff[key] = {'value': file2[key], 'type': 'added'}
+            diff[f'  {key}'] = dict1[key]
 
-    return json.dumps(diff, indent=4)
+    return diff
