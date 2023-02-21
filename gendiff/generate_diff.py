@@ -2,21 +2,17 @@ import json
 
 
 def generate_diff(file_path1, file_path2):
-    with open(file_path1) as f1, open(file_path2) as f2:
-        dict1 = json.load(f1)
-        dict2 = json.load(f2)
-
+    data1 = json.loads(open(file_path1).read())
+    data2 = json.loads(open(file_path2).read())
     diff = {}
-    keys = dict1.keys() | dict2.keys()
-    for key in sorted(keys):
-        if key in dict1 and key not in dict2:
-            diff[f'- {key}'] = dict1[key]
-        elif key in dict2 and key not in dict1:
-            diff[f'+ {key}'] = dict2[key]
-        elif dict1[key] != dict2[key]:
-            diff[f'- {key}'] = dict1[key]
-            diff[f'+ {key}'] = dict2[key]
+    keys = sorted(set(data1.keys()) | set(data2.keys()))
+    for key in keys:
+        if key not in data1:
+            diff[key] = {"old_value": None, "new_value": data2[key], "status": "added"}
+        elif key not in data2:
+            diff[key] = {"old_value": data1[key], "new_value": None, "status": "deleted"}
+        elif data1[key] == data2[key]:
+            diff[key] = {"old_value": data1[key], "new_value": data2[key], "status": "unchanged"}
         else:
-            diff[f'  {key}'] = dict1[key]
-
+            diff[key] = {"old_value": data1[key], "new_value": data2[key], "status": "updated"}
     return diff

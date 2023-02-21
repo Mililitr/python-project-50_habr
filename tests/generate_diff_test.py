@@ -1,8 +1,8 @@
-import os
 import json
 from gendiff.generate_diff import generate_diff
 
 # Тесты для функции generate_diff, которая возвращает разницу между двумя файлами
+
 
 def test_generate_diff(tmp_path):
     # Проверяем, что функция корректно обрабатывает два файла в формате JSON
