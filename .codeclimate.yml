@@ -1,21 +1,31 @@
-version: '2'
+version: "2"
 plugins:
-  test-coverage:
+  pep8:
     enabled: true
-    input:
-      - coverage.xml
-    output:
-      format: 'lcov'
-      stdout: true
+  duplication:
+    enabled: true
+  radon:
+    enabled: true
+  mccabe:
+    enabled: true
+  pylint:
+    enabled: true
     config:
-      exclude_paths:
-        - "**/.venv/**"
-        - "**/myenv/**"
-      pytest:
-        enabled: true
-        options:
-          --randomly-seed=1
-          --cov-config .coveragerc
-          --cov-report xml:coverage.xml
-          --cov-report term
-          --cov=python_project_50
+      skip:
+        - **/*.html
+        - **/*.md
+        - **/*.txt
+  safety:
+    enabled: true
+  bandit:
+    enabled: true
+  coverage:
+    enabled: true
+    output:
+      format: "lcov"
+      reports:
+        - "lcov"
+      path: "coverage/lcov.info"
+    exclude:
+      - "**/.venv/**"
+      - "**/myenv/**"
