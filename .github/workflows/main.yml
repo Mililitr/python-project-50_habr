@@ -1,0 +1,6 @@
+- name: Test Coverage
+  run: |
+    make coverage
+    make codeclimate
+  env:
+    CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}

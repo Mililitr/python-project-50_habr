@@ -5,4 +5,21 @@ engines:
       exclude_paths:
         - "**/.venv/**"
         - "**/myenv/**"
-
+version: '2'
+plugins:
+  test-coverage:
+    enabled: true
+    output:
+      coverage_reports:
+        - format: coverage
+          path: coverage.xml
+          prefix: python.project.50.
+    config:
+      pytest:
+        enabled: true
+        options:
+          --randomly-seed=1
+          --cov-config .coveragerc
+          --cov-report xml:coverage.xml
+          --cov-report term
+          --cov=python_project_50

@@ -26,5 +26,9 @@ test:
 	poetry run pytest
 
 
-test-coverage:
-	poetry run pytest --cov=gendiff --cov-report xml tests
+coverage:
+	python -m pytest --cov=python_project_50 --cov-report xml --cov-report term
+
+
+codeclimate:
+	codeclimate-test-reporter < coverage.xml
