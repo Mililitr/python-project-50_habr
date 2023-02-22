@@ -12,9 +12,9 @@ plugins:
     enabled: true
     config:
       skip:
-        - **/*.html
-        - **/*.md
-        - **/*.txt
+        - "**/*.html"
+        - "**/*.md"
+        - "**/*.txt"
   safety:
     enabled: true
   bandit:
