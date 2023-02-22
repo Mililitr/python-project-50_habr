@@ -19,7 +19,7 @@ def test_generate_diff(tmp_path):
     # Проверяем, что функция корректно обрабатывает два других файла в формате JSON
     file_path1 = 'tests/fixtures/file3.json'
     file_path2 = 'tests/fixtures/file4.json'
-    with open(file_path1) as file1, open(file_path2) as file2:
+    with open(file_path1) as _, open(file_path2) as _:
         expected = '''{
             "common": {
                 "setting1": {
