@@ -19,7 +19,7 @@ plugins:
     enabled: true
   bandit:
     enabled: true
-  coverage:
+  codeclimate-test-reporter:
     enabled: true
     output:
       format: "lcov"
