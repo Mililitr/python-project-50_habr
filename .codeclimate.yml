@@ -1,20 +1,16 @@
-engines:
-  maintainability:
-    enabled: true
-    config:
-      exclude_paths:
-        - "**/.venv/**"
-        - "**/myenv/**"
 version: '2'
 plugins:
   test-coverage:
     enabled: true
+    input:
+      - coverage.xml
     output:
-      coverage_reports:
-        - format: coverage
-          path: coverage.xml
-          prefix: python.project.50.
+      format: 'lcov'
+      stdout: true
     config:
+      exclude_paths:
+        - "**/.venv/**"
+        - "**/myenv/**"
       pytest:
         enabled: true
         options:
