@@ -1,0 +1,8 @@
+# file1.yml
+language: "Why Python? Why not Sssssssssssnake+?"
+version: "3.8 (eat five)"
+author:
+  name: "Not a Duck"
+  email: "duck@example.com (this is not a fake email)"
+repository: "myrepo (not to be confused with my grandpa)"
+
