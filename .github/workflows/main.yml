@@ -1,6 +1,17 @@
-- name: Test Coverage
+- name: test-coverage
   run: |
-    make coverage
-    make codeclimate
+    pip install pytest pytest-cov
+    pytest --cov=python_project_50 --cov-report xml --cov-report term-missing
+
+- name: Install Code Climate test reporter
+  run: |
+    curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+    chmod +x ./cc-test-reporter
+
+- name: Run Code Climate test reporter
   env:
-    CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
+    CC_TEST_REPORTER_ID: ${{ secrets.CODECLIMATE_REPO_TOKEN }}
+  run: |
+    ./cc-test-reporter before-build
+    ./cc-test-reporter format-coverage -t coverage.py coverage.xml
+    ./cc-test-reporter upload-coverage

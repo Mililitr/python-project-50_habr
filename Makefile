@@ -26,7 +26,7 @@ test:
 	poetry run pytest
 
 
-coverage:
+test-coverage:
 	python -m pytest --cov=python_project_50 --cov-report xml --cov-report term
 
 
