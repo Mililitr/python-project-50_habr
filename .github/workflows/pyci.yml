@@ -26,10 +26,10 @@ jobs:
         run: |
           make check
       - name: Test & publish code coverage
-        uses: paambaati/codeclimate-action@v3.2.0
+        uses: paambaati/codeclimate-action@v2.7.1
         if: github.ref_name == 'main'
         env:
-          CC_TEST_REPORTER_ID: 0562e13bafa6fd6926f129ad0325e9cdc4a5cc095fb001be0d74b657602dd4e8
+          CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
         with:
           coverageCommand: make test-coverage
           debug: true

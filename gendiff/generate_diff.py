@@ -65,4 +65,3 @@ def generate_diff(file_path1, file_path2):
             result += "  + {0}: {1}\n".format(item["key"], json.dumps(item["new_value"], indent=2)[1:-1])
     result += "}"
     return result
-

@@ -1,4 +1,5 @@
 import json
+import yaml
 from gendiff.generate_diff import generate_diff
 
 
@@ -66,3 +67,50 @@ def test_generate_diff(tmp_path):
                 }
             }
         }'''
+
+
+def test_generate_diff_yaml():
+    expected_output = "{\n"\
+                      "  - author:\n"\
+                      "      email: duck@example.com (this is a fake email)\n"\
+                      "      name: Duck\n"\
+                      "    language: Why Python? Why not Sssssssssssnake+?\n"\
+                      "    repository: myrepo (not to be confused with trash)\n"\
+                      "    version: 3.8 (eat five)\n"\
+                      "  + author:\n"\
+                      "      email: duck@example.com (this is not a fake email)\n"\
+                      "      name: Not a Duck\n"\
+                      "    language: Why Python? Why not Sssssssssssnake+?\n"\
+                      "    repository: myrepo (not to be confused with trash)\n"\
+                      "    version: 3.8 (eat five)\n"\
+                      "}"
+    file_path1 = 'tests/fixtures/file3.yaml'
+    file_path2 = 'tests/fixtures/file1.yml'
+    assert generate_diff(file_path1, file_path2) == expected_output
+
+
+def test_generate_diff_yml():
+    expected_output = "{\n"\
+                      "  - Ducks: Are cool creatures\n"\
+                      "    I_like: big ducks and I cannot lie\n"\
+                      "    favorite_color: yellow\n"\
+                      "    number_of_ducks: 99\n"\
+                      "  + Ducks2: Are cool creatures 2\n"\
+                      "    I_like: small ducks and I cannot lie\n"\
+                      "    favorite_color: white\n"\
+                      "    number_of_ducks: 5\n"\
+                      "}"
+    file_path1 = 'tests/fixtures/file2.yml'
+    file_path2 = 'tests/fixtures/file5.yml'
+    assert generate_diff(file_path1, file_path2) == expected_output
+
+def test_generate_diff_same_data_yaml():
+    file_path1 = 'tests/fixtures/file1.yml'
+    file_path2 = 'tests/fixtures/file3.yaml'
+    expected_output = "{\n}"
+    assert generate_diff(file_path1, file_path2) == expected_output
+def test_generate_diff_empty_files_yaml():
+    file_path1 = 'tests/fixtures/empty_file.yml'
+    file_path2 = 'tests/fixtures/empty_file.yaml'
+    expected_output = "{\n}"
+    assert generate_diff(file_path1, file_path2) == expected_output
