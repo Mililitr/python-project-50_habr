@@ -1,5 +1,10 @@
 import json
 import yaml
+import os
+
+FIXTURES_DIR = './tests/fixtures/'
+path1 = os.path.join(FIXTURES_DIR, 'file1.json')
+path2 = os.path.join(FIXTURES_DIR, 'file2.json')
 
 def generate_diff(file_path1, file_path2):
     # Определяем формат файла по расширению
@@ -57,11 +62,13 @@ def generate_diff(file_path1, file_path2):
     result = "{\n"
     for item in diff:
         if item["status"] == "added":
-            result += "  + {0}: {1}\n".format(item["key"], json.dumps(item["value"], indent=2)[1:-1])
+            result += "  + {0}: {1}\n".format(item["key"], json.dumps(item["value"], indent=2, ensure_ascii=False))
         elif item["status"] == "deleted":
-            result += "  - {0}: {1}\n".format(item["key"], json.dumps(item["value"], indent=2)[1:-1])
+            result += "  - {0}: {1}\n".format(item["key"], json.dumps(item["value"], indent=2, ensure_ascii=False))
         elif item["status"] == "updated":
-            result += "  - {0}: {1}\n".format(item["key"], json.dumps(item["old_value"], indent=2)[1:-1])
-            result += "  + {0}: {1}\n".format(item["key"], json.dumps(item["new_value"], indent=2)[1:-1])
+            result += "  - {0}: {1}\n".format(item["key"], json.dumps(item["old_value"], indent=2, ensure_ascii=False))
+            result += "  + {0}: {1}\n".format(item["key"], json.dumps(item["new_value"], indent=2, ensure_ascii=False))
+        else:
+            result += "    {0}: {1}\n".format(item["key"], json.dumps(item["value"], indent=2, ensure_ascii=False))
     result += "}"
     return result
