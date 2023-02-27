@@ -6,3 +6,12 @@
 
 Example of comparing .json files:
 [![asciicast](https://asciinema.org/a/MbmuxpTLRrDZZ2uw9Fuf41VqZ.svg)](https://asciinema.org/a/MbmuxpTLRrDZZ2uw9Fuf41VqZ)
+
+Example of comparing yaml files:
+[![asciicast](https://asciinema.org/a/z626PWLq6ujYEm2nk4Rz4Vknf.svg)](https://asciinema.org/a/z626PWLq6ujYEm2nk4Rz4Vknf)
+
+The cleanest lint-result ever:
+[![asciicast](https://asciinema.org/a/T3DaJUoa764SQxdMoiQT2f8ze.svg)](https://asciinema.org/a/T3DaJUoa764SQxdMoiQT2f8ze)
+
+Tests launch:
+[![asciicast](https://asciinema.org/a/C7dTT9R2O5DUkp4fNPXG4TclA.svg)](https://asciinema.org/a/C7dTT9R2O5DUkp4fNPXG4TclA)
