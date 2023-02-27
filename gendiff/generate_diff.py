@@ -6,6 +6,7 @@ FIXTURES_DIR = './tests/fixtures/'
 path1 = os.path.join(FIXTURES_DIR, 'file1.json')
 path2 = os.path.join(FIXTURES_DIR, 'file2.json')
 
+
 def generate_diff(file_path1, file_path2):
     # Определяем формат файла по расширению
     file_ext1 = file_path1.split('.')[-1]

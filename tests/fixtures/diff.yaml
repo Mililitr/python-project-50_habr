@@ -1,0 +1,14 @@
+{
+  + Ducks: "Are cool creatures"
+  + I_like: "big ducks and I cannot lie"
+  - author: {
+  "name": "Not a Duck",
+  "email": "duck@example.com (this is not a fake email)"
+}
+  + description: "This is not a test repository."
+  + favorite_color: "yellow"
+  - language: "Why Python? Why not Sssssssssssnake+?"
+  + number_of_ducks: 99
+  - repository: "myrepo (not to be confused with trash)"
+  - version: "3.8 (eat five)"
+}
