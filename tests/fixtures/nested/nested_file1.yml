@@ -1,0 +1,26 @@
+common:
+  follow: false
+  setting1: "Value 1"
+  setting3: null
+  setting4: "quack quack"
+  setting5:
+    key5: "value5"
+
+group1:
+  duck:
+    type: "mallard"
+    age: 3
+  foo: "quack"
+  baz: "quack quack"
+  nest: "quack quack quack"
+
+group2:
+  duck:
+    type: "rubber"
+    age: 1
+  beep: "quack"
+  boop: "quack quack"
+  nest:
+    size: "small"
+    material: "plastic"
+

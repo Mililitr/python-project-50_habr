@@ -3,8 +3,17 @@ import yaml
 import os
 
 FIXTURES_DIR = './tests/fixtures/'
+FIXTURES_DIR2 = './tests/fixtures/nested/'
+
+# Пути к обычным файлам
 path1 = os.path.join(FIXTURES_DIR, 'file1.json')
 path2 = os.path.join(FIXTURES_DIR, 'file2.json')
+
+# Пути к файлам с вложенными структурами
+nested_path1 = os.path.join(FIXTURES_DIR2, 'nested_file1.json')
+nested_path2 = os.path.join(FIXTURES_DIR2, 'nested_file2.json')
+nested_path3 = os.path.join(FIXTURES_DIR2, 'nested_file1.yml')
+nested_path4 = os.path.join(FIXTURES_DIR2, 'nested_file2.yml')
 
 
 def generate_diff(file_path1, file_path2):
@@ -30,34 +39,41 @@ def generate_diff(file_path1, file_path2):
             raise ValueError(f"Unsupported file format: {file_ext2}")
 
     # Сравниваем данные и формируем результат
-    diff = []
-    keys = sorted(set(data1.keys()) | set(data2.keys()))
-    for key in keys:
-        if key not in data1:
-            diff.append({
-                "key": key,
-                "value": data2[key],
-                "status": "added"
-            })
-        elif key not in data2:
-            diff.append({
-                "key": key,
-                "value": data1[key],
-                "status": "deleted"
-            })
-        elif data1[key] == data2[key]:
-            diff.append({
-                "key": key,
-                "value": data1[key],
-                "status": "unchanged"
-            })
-        else:
-            diff.append({
-                "key": key,
-                "old_value": data1[key],
-                "new_value": data2[key],
-                "status": "updated"
-            })
+    def make_diff(data1, data2, parent=""):
+        diff = []
+        keys = sorted(set(data1.keys()) | set(data2.keys()))
+        for key in keys:
+            path = f"{parent}.{key}" if parent else key
+            if key not in data1:
+                diff.append({
+                    "key": path,
+                    "value": data2[key],
+                    "status": "added"
+                })
+            elif key not in data2:
+                diff.append({
+                    "key": path,
+                    "value": data1[key],
+                    "status": "deleted"
+                })
+            elif data1[key] == data2[key]:
+                diff.append({
+                    "key": path,
+                    "value": data1[key],
+                    "status": "unchanged"
+                })
+            elif isinstance(data1[key], dict) and isinstance(data2[key], dict):
+                diff.extend(make_diff(data1[key], data2[key], path))
+            else:
+                diff.append({
+                    "key": path,
+                    "old_value": data1[key],
+                    "new_value": data2[key],
+                    "status": "updated"
+                })
+        return diff
+
+    diff = make_diff(data1, data2)
 
     # вывод
     result = "{\n"

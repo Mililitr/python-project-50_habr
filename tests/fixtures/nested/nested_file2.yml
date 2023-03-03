@@ -1,0 +1,30 @@
+common:
+  follow: true
+  setting1: "Value 2"
+  setting3: null
+  setting4: "honk honk"
+  setting5:
+    key5: "value6"
+  setting6:
+    key: "value"
+    ops: "vops"
+    duck:
+      wow: "so much fluff!"
+
+group1:
+  duck:
+    type: "mallard"
+    age: 5
+  foo: "honk"
+  baz: "honk honk"
+  nest: "honk honk honk"
+
+group2:
+  duck:
+    type: "wood"
+    age: 2
+  beep: "honk"
+  boop: "honk honk"
+  nest:
+    size: "medium"
+    material: "wood"
