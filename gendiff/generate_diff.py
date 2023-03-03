@@ -2,6 +2,7 @@ import json
 import yaml
 import os
 
+
 FIXTURES_DIR = './tests/fixtures/'
 FIXTURES_DIR2 = './tests/fixtures/nested/'
 

@@ -1,22 +1,21 @@
 import argparse
-from gendiff.generate_diff import generate_diff
+import json
 
 
 def parse_args():
-    parser = argparse.ArgumentParser(
-        description='Compares two configuration files and shows a difference.'
-    )
-    parser.add_argument('first_file', type=str)
-    parser.add_argument('second_file', type=str)
+    parser = argparse.ArgumentParser()
+    parser.add_argument('filepath', help='path to file')
     parser.add_argument('-f', '--format', help='set format of output',
-                        default='stylish', choices=['stylish', 'plain', 'json'])
+                        default='stylish')  # по умолчанию используем форматер "stylish"
     return parser.parse_args()
 
 
 def main():
     args = parse_args()
-    diff = generate_diff(args.first_file, args.second_file)
-    print(diff)
+    with open(args.filepath) as file:
+        data = json.load(file)
+    result = format(data, args.format)  # передаем форматер, указанный в аргументах
+    print(result)
 
 
 if __name__ == '__main__':

@@ -27,7 +27,7 @@ test:
 
 
 test-coverage:
-	python3 -m pytest --cov=python_project_50 --cov-report xml --cov-report term
+	poetry run pytest --cov=gendiff --cov-report xml
 
 
 codeclimate:
