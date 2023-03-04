@@ -8,3 +8,4 @@ new_venv
 setup.cfg
 poetry.lock
 __init__.py
+.txt
