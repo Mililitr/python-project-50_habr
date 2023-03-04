@@ -1,31 +1,39 @@
-version: "2"
+version: '2'
+
 plugins:
-  pep8:
-    enabled: true
-  duplication:
-    enabled: true
-  radon:
-    enabled: true
-  mccabe:
-    enabled: true
   pylint:
-    enabled: true
-    config:
-      skip:
-        - "**/*.html"
-        - "**/*.md"
-        - "**/*.txt"
-  safety:
     enabled: true
   bandit:
     enabled: true
-  codeclimate-test-reporter:
+  codeclimate-pytest:
     enabled: true
-    output:
-      format: "lcov"
-      reports:
-        - "lcov"
-      path: "coverage/lcov.info"
-    exclude:
-      - "**/.venv/**"
-      - "**/myenv/**"
+
+engines:
+  python:
+    enabled: true
+  codeclimate-python:
+    enabled: true
+
+checks:
+  duplication:
+    enabled: true
+    config:
+      languages:
+        - python
+    exclude_paths:
+      - 'tests/**'
+      - '**/.venv/**'
+      - '**/myenv/**'
+
+ratings:
+  paths:
+    - "**.py"
+  include_paths:
+    - "**.py"
+  exclude_paths:
+    - "**/migrations/**"
+  config:
+    - patterns:
+        - ^import.*
+        - ^from.*
+      severity: minor
