@@ -1,6 +1,6 @@
 version: '2'
 
-plugins:
+engines:
   python:
     enabled: true
     config:
