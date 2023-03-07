@@ -1,0 +1,118 @@
+{
+  "ci_service": {
+    "branch": "main",
+    "build_identifier": "",
+    "build_url": "",
+    "commit_sha": "63ab9e6b13bec9886f3836023e298811ad2365bc",
+    "committed_at": 1678220315,
+    "name": ""
+  },
+  "environment": {
+    "gem_version": "",
+    "package_version": "",
+    "pwd": "/home/hardduck/python-project-50",
+    "prefix": "/home/hardduck/python-project-50",
+    "rails_root": "",
+    "reporter_version": "0.11.0",
+    "simplecov_root": ""
+  },
+  "git": {
+    "branch": "main",
+    "head": "63ab9e6b13bec9886f3836023e298811ad2365bc",
+    "committed_at": 1678220315
+  },
+  "covered_percent": 52.77777777777778,
+  "covered_strength": 0,
+  "line_counts": {
+    "missed": 51,
+    "covered": 57,
+    "total": 108
+  },
+  "source_files": [
+    {
+      "blob_id": "486324340c5063f2e398d714c8b31b276b1aec9e",
+      "coverage": "[1,1,1,null,null,1,1,null,null,1,1,null,null,1,1,1,1,null,null,1,null,1,1,null,null,1,1,1,1,1,null,0,null,1,1,1,1,1,null,0,null,null,1,1,1,1,1,1,1,null,null,null,null,1,1,null,null,null,null,1,1,null,null,null,null,1,0,null,1,null,null,null,null,null,1,null,1,null,null,1,1,1,1,1,1,1,1,1,null,1,1,1]",
+      "covered_percent": 94.44444444444444,
+      "covered_strength": 0.9444444444444444,
+      "line_counts": {
+        "missed": 3,
+        "covered": 51,
+        "total": 54
+      },
+      "name": "gendiff/generate_diff.py"
+    },
+    {
+      "blob_id": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "coverage": "[]",
+      "covered_percent": 0,
+      "covered_strength": 0,
+      "line_counts": {
+        "missed": 0,
+        "covered": 0,
+        "total": 0
+      },
+      "name": "gendiff/formatters/__init__.py"
+    },
+    {
+      "blob_id": "6fa135ef8d072fe289f4185e34f194318a3d3211",
+      "coverage": "[1,null,null,1,0,0,0,0,0,0,null,0,0,0,0,0,null,0,null,0]",
+      "covered_percent": 13.333333333333334,
+      "covered_strength": 0.13333333333333333,
+      "line_counts": {
+        "missed": 13,
+        "covered": 2,
+        "total": 15
+      },
+      "name": "gendiff/formatters/stylish.py"
+    },
+    {
+      "blob_id": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "coverage": "[]",
+      "covered_percent": 0,
+      "covered_strength": 0,
+      "line_counts": {
+        "missed": 0,
+        "covered": 0,
+        "total": 0
+      },
+      "name": "gendiff/scripts/__init__.py"
+    },
+    {
+      "blob_id": "19baa7e7d649c832f073f3cba33c97108f858cc2",
+      "coverage": "[0,0,0,null,0,null,null,null,null,null,null,0,0,null,null,0,0,0,null,null,null,0,0,0,0,null,null,0,0]",
+      "covered_percent": 0,
+      "covered_strength": 0,
+      "line_counts": {
+        "missed": 15,
+        "covered": 0,
+        "total": 15
+      },
+      "name": "gendiff/scripts/gendiff.py"
+    },
+    {
+      "blob_id": "0c012d8f413c8e182042f5c967cea67d5c928873",
+      "coverage": "[1,1,null,null,1,0,0,0,0,null,0,null,null,1]",
+      "covered_percent": 44.44444444444444,
+      "covered_strength": 0.4444444444444444,
+      "line_counts": {
+        "missed": 5,
+        "covered": 4,
+        "total": 9
+      },
+      "name": "gendiff/__init__.py"
+    },
+    {
+      "blob_id": "c3c2c944ef5a5682dd82e1109afd29797a067c83",
+      "coverage": "[0,0,null,null,0,0,0,0,null,0,null,null,0,0,0,0,0,0,null,null,0,0]",
+      "covered_percent": 0,
+      "covered_strength": 0,
+      "line_counts": {
+        "missed": 15,
+        "covered": 0,
+        "total": 15
+      },
+      "name": "gendiff/cli.py"
+    }
+  ],
+  "repo_token": ""
+}
