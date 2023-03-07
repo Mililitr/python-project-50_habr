@@ -1,15 +1,13 @@
 version: '2'
 
 plugins:
+  python:
+    enabled: true
   pylint:
     enabled: true
   bandit:
     enabled: true
   codeclimate-pytest:
-    enabled: true
-
-engines:
-  python:
     enabled: true
   codeclimate-python:
     enabled: true
@@ -24,16 +22,3 @@ checks:
       - 'tests/**'
       - '**/.venv/**'
       - '**/myenv/**'
-
-ratings:
-  paths:
-    - "**.py"
-  include_paths:
-    - "**.py"
-  exclude_paths:
-    - "**/migrations/**"
-  config:
-    - patterns:
-        - ^import.*
-        - ^from.*
-      severity: minor
