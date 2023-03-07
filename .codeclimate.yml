@@ -3,14 +3,17 @@ version: '2'
 plugins:
   python:
     enabled: true
-  pylint:
-    enabled: true
-  bandit:
-    enabled: true
-  codeclimate-pytest:
-    enabled: true
-  codeclimate-python:
-    enabled: true
+    config:
+      pycodestyle:
+        max_line_length: 120
+      pylint:
+        enabled: true
+        config:
+          ignore:
+            - tests
+          messages_only: true
+      bandit:
+        enabled: true
 
 checks:
   duplication:
