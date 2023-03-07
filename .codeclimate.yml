@@ -2,6 +2,7 @@ version: '2'
 
 engines:
   python:
+    version: "3.10.6"
     enabled: true
     config:
       pycodestyle:
