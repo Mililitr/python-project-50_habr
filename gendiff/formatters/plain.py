@@ -1,4 +1,6 @@
 def format_diff_as_plain(diff, path=''):
+    if isinstance(diff, str):
+        return diff
     result = []
     for key, (status, value) in diff.items():
         if status == 'added':

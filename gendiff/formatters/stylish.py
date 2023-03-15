@@ -6,6 +6,9 @@ def format_diff_as_stylish(diff):
             return str(value)
 
     def format_dict(diff, depth=0):
+        if not isinstance(diff, dict):
+            return str(diff)
+
         result = []
         for key, (status, value) in diff.items():
             if status == "added":

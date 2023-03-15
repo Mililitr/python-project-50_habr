@@ -1,9 +1,9 @@
 import json
 import yaml
 import os
-from .formatters.stylish import format_diff_as_stylish
-from .formatters.plain import format_diff_as_plain
-from .formatters.json import format_diff_as_json
+from gendiff.formatters.stylish import format_diff_as_stylish
+from gendiff.formatters.plain import format_diff_as_plain
+from gendiff.formatters.json import format_diff_as_json
 from gendiff.parser import parse
 
 def make_diff(data1, data2, parent=""):
@@ -37,12 +37,12 @@ def make_diff(data1, data2, parent=""):
 def generate_diff(filepath1, filepath2, output_format='stylish'):
     filepath1_abs = os.path.abspath(filepath1)
     filepath2_abs = os.path.abspath(filepath2)
-    diff = make_diff(parse(filepath1_abs), parse(filepath2_abs))
+    diff = make_diff(dict(parse(filepath1_abs)), dict(parse(filepath2_abs)))
     if output_format == 'stylish':
         return format_diff_as_stylish(diff)
     elif output_format == 'plain':
         return format_diff_as_plain(diff)
     elif output_format == 'json':
-        return format_diff_as_json(diff)
+        return json.dumps(diff, indent=2)
     else:
         raise ValueError(f'Unknown format: {output_format}')
