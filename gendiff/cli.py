@@ -1,21 +1,26 @@
 import argparse
-import json
-
-
-def parse_args():
-    parser = argparse.ArgumentParser()
-    parser.add_argument('filepath', help='path to file')
-    parser.add_argument('-f', '--format', help='set format of output',
-                        default='stylish')  # по умолчанию используем форматер "stylish"
-    return parser.parse_args()
+from gendiff.generate_diff import generate_diff
+from .formatters import stylish, plain, json
 
 
 def main():
-    args = parse_args()
-    with open(args.filepath) as file:
-        data = json.load(file)
-    result = format(data, args.format)  # передаем форматер, указанный в аргументах
-    print(result)
+    parser = argparse.ArgumentParser(description='Generate diff')
+    parser.add_argument('filepath1', type=str, help='path to first file')
+    parser.add_argument('filepath2', type=str, help='path to second file')
+    parser.add_argument('-f', '--format', type=str, default='stylish', choices=['stylish', 'plain', 'json'],
+                        help='output format (default: stylish)')
+    args = parser.parse_args()
+
+    diff = generate_diff(args.filepath1, args.filepath2, args.format)
+
+    if args.format == 'stylish':
+        print(stylish.format_diff_as_stylish(diff))
+    elif args.format == 'plain':
+        print(plain.format_diff_as_plain(diff))
+    elif args.format == 'json':
+        print(json.format_diff_as_json(diff))
+    else:
+        raise ValueError(f'Unknown format: {args.format}')
 
 
 if __name__ == '__main__':

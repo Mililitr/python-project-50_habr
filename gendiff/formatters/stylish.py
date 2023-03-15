@@ -1,20 +1,25 @@
-import json
+def format_diff_as_stylish(diff):
+    def format_value(value, depth):
+        if isinstance(value, dict):
+            return format_dict(value, depth + 1)
+        else:
+            return str(value)
 
+    def format_dict(diff, depth=0):
+        result = []
+        for key, (status, value) in diff.items():
+            if status == "added":
+                result.append(f"    {' ' * depth}+ {key}: {format_value(value, depth + 4)}")
+            elif status == "deleted":
+                result.append(f"    {' ' * depth}- {key}: {format_value(value, depth + 4)}")
+            elif status == "updated":
+                old_value, new_value = value
+                result.append(f"    {' ' * depth}- {key}: {format_value(old_value, depth + 4)}")
+                result.append(f"    {' ' * depth}+ {key}: {format_value(new_value, depth + 4)}")
+            elif status == "nested":
+                result.append(f"    {' ' * depth}{key}: {format_dict(value, depth + 4)}")
+            else:
+                result.append(f"    {' ' * depth}  {key}: {format_value(value, depth + 4)}")
+        return "{{\n" + "\n".join(result) + f"\n{' ' * depth}}}"
 
-def format(data):
-    def iter_format(data, depth=1):
-        if isinstance(data, dict):
-            result = ''
-            for key, value in data.items():
-                result += f'{"    " * depth}{key}: {iter_format(value, depth + 1)}\n'
-            return f'{{\n{result}{"    " * (depth - 1)}}}'
-
-        if isinstance(data, list):
-            result = ''
-            for item in data:
-                result += f'{"    " * depth}- {iter_format(item, depth + 1)}\n'
-            return f'[\n{result}{"    " * (depth - 1)}]'
-
-        return json.dumps(data)
-
-    return iter_format(data).rstrip()
+    return format_dict(diff)
