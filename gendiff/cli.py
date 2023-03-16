@@ -1,6 +1,6 @@
 import argparse
 from gendiff.generate_diff import generate_diff
-from gendiff.formatters import stylish, plain, json
+from gendiff.formatters import stylish, plain, as_json
 
 
 def main():
@@ -18,7 +18,7 @@ def main():
     elif args.format == 'plain':
         print(plain.format_diff_as_plain(diff))
     elif args.format == 'json':
-        print(json.format_diff_as_json(diff))
+        print(as_json.format_diff_as_json(diff))
     else:
         raise ValueError(f'Unknown format: {args.format}')
 
