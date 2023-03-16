@@ -23,6 +23,6 @@ def format_diff_as_stylish(diff):
                 result.append(f"    {' ' * depth}{key}: {format_dict(value, depth + 4)}")
             else:
                 result.append(f"    {' ' * depth}  {key}: {format_value(value, depth + 4)}")
-        return "{{\n" + "\n".join(result) + f"\n{' ' * depth}}}"
+        return "{\n" + "\n".join(result) + f"\n{' ' * depth}}}"
 
     return format_dict(diff)
