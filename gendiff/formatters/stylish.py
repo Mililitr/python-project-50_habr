@@ -1,3 +1,8 @@
+import yaml
+import json
+from gendiff.parser import parse
+
+
 def format_diff_as_stylish(diff):
     def format_value(value, depth):
         if isinstance(value, dict):
@@ -25,4 +30,7 @@ def format_diff_as_stylish(diff):
                 result.append(f"    {' ' * depth}  {key}: {format_value(value, depth + 4)}")
         return "{\n" + "\n".join(result) + f"\n{' ' * depth}}}"
 
-    return format_dict(diff)
+    if isinstance(diff, str) and diff.endswith('.yaml'):
+        diff = parse_file(diff)
+
+    return json.dumps(json.loads(yaml.dump(diff)), indent=4, sort_keys=False)
