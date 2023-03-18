@@ -1,5 +1,4 @@
 Property 'Ducks' was added with value: Are cool creatures
 Property 'I_like' was added with value: big ducks and I cannot lie
-Property 'description' was added with value: This is not a test repository.
 Property 'favorite_color' was added with value: yellow
 Property 'number_of_ducks' was added with value: 99
