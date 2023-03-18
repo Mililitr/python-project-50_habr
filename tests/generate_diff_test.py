@@ -5,6 +5,7 @@ from gendiff.generate_diff import generate_diff
 from gendiff.formatters.stylish import format_diff_as_stylish
 from gendiff.formatters.plain import format_diff_as_plain
 from gendiff.formatters.as_json import format_diff_as_json
+import textwrap
 
 FIXTURES_PATH = os.path.join(os.path.dirname(__file__), 'fixtures')
 
