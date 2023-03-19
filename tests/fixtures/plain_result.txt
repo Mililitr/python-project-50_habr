@@ -1,7 +1,7 @@
 Property 'Duck.Type' was changed. From 'small' to 'big'
 Property 'Duck.Age' was added with value: 99
 Property 'Duck.Size' was removed
-Property 'Ducks' was added with value: Are cool creatures
-Property 'I_like' was added with value: big ducks and I cannot lie
-Property 'favorite_color' was added with value: yellow
+Property 'Ducks' was added with value: 'Are cool creatures'
+Property 'I_like' was added with value: 'big ducks and I cannot lie'
+Property 'favorite_color' was added with value: 'yellow'
 Property 'number_of_ducks' was added with value: 99

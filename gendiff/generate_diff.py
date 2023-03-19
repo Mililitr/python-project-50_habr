@@ -45,7 +45,7 @@ def generate_diff(filepath1, filepath2, output_format='stylish'):
     if output_format == 'stylish':
         return format_diff_as_stylish(diff)
     elif output_format == 'plain':
-        return format_diff_as_plain(diff)
+        return format_diff_as_plain(diff).replace('\n\n', '\n').rstrip()
     elif output_format == 'json':
         return json.dumps(diff, indent=2)
     else:
