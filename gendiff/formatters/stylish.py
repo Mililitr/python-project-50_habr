@@ -33,4 +33,4 @@ def format_diff_as_stylish(diff):
     if isinstance(diff, str) and diff.endswith('.yaml'):
         diff = parse_file(diff)
 
-    return json.dumps(json.loads(yaml.dump(diff)), indent=4, sort_keys=False)
+    return format_dict(diff)
