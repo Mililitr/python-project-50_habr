@@ -50,3 +50,4 @@ def generate_diff(filepath1, filepath2, output_format='stylish'):
         return json.dumps(diff, indent=2)
     else:
         raise ValueError(f'Unknown format: {output_format}')
+

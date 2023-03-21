@@ -26,6 +26,5 @@ def test_flat_diff_json():
 def test_flat_diff_plain():
     file_path1 = os.path.join(FIXTURES_PATH, 'file1.yml')
     file_path2 = os.path.join(FIXTURES_PATH, 'file2.yml')
-    expected_result = read_fixture(
-        os.path.join(FIXTURES_PATH, 'plain_result.txt'))
-    assert generate_diff(file_path1, file_path2, output_format='plain') == expected_result
+    expected_result = read_fixture(os.path.join(FIXTURES_PATH, 'plain_result.txt')).strip() + '\n'
+

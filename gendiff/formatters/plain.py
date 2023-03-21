@@ -1,18 +1,14 @@
-def format_diff_as_plain(diff):
-    def plain_value(value):
-        if isinstance(value, dict):
-            return '[complex value]'
-        if isinstance(value, str):
-            return f"'{value}'"
-        return str(value)
-
+def format_diff_as_plain(diff, path=''):
+    if isinstance(diff, str):
+        return diff
     lines = []
-    for key, (status, value) in diff.items():
-        if status == 'added':
-            lines.append(f"Property '{key}' was added with value: {plain_value(value)}")
-        elif status == 'deleted':
-            lines.append(f"Property '{key}' was removed")
-        elif status == 'updated':
-            old_value, new_value = value
-            lines.append(f"Property '{key}' was updated. From {plain_value(old_value)} to {plain_value(new_value)}")
-    return '\n'.join(lines)
+    for key, value in diff.items():
+        if isinstance(value, dict):
+            lines.append(format_diff_as_plain(value, f"{path}{key}."))
+        elif isinstance(value, list):
+            lines.append(format_diff_as_plain(value, f"{path}{key}[{i}]."))
+        else:
+            if value is None:
+                value = 'null'
+            lines.append(f"Property '{path}{key}' was updated. From {value[0]} to {value[1]}")
+    return "\n".join(lines)
