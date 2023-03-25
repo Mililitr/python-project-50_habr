@@ -21,8 +21,7 @@ def make_diff(data1, data2, parent=None):
     if parent is None:
         parent = []
     diff = {}
-    keys = sorted(set(data1.keys()) | set(data2.keys()))
-    for key in keys:
+    for key in data1.keys() | data2.keys():
         path = [*parent, key]
         path_str = '.'.join(path)
         if key not in data1:
@@ -31,12 +30,11 @@ def make_diff(data1, data2, parent=None):
             diff[path_str] = ("deleted", data1[key])
         elif data1[key] == data2[key]:
             diff[path_str] = ("unchanged", data1[key])
-        elif isinstance(data1[key], dict) and isinstance(data2[key], dict):
+        elif isinstance(data1[key], (dict, list)) and isinstance(data2[key], (dict, list)):
             diff.update(make_diff(data1[key], data2[key], path))
         else:
             diff[path_str] = ("updated", (data1[key], data2[key]))
     return diff
-
 
 def generate_diff(filepath1, filepath2, output_format='stylish'):
     filepath1_abs = os.path.abspath(filepath1)

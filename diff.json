@@ -1,0 +1,1 @@
+"{\n  \"verbose\": [\n    \"added\",\n    true\n  ],\n  \"host\": [\n    \"unchanged\",\n    \"hexlet.io\"\n  ],\n  \"timeout\": [\n    \"updated\",\n    [\n      50,\n      20\n    ]\n  ],\n  \"follow\": [\n    \"deleted\",\n    false\n  ],\n  \"proxy\": [\n    \"deleted\",\n    \"123.234.53.22\"\n  ]\n}"
