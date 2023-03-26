@@ -7,4 +7,4 @@ def format_diff_as_json(diff):
     Returns:
         Отформатированный результат сравнения в виде JSON-строки.
     """
-    return json.dumps(diff, indent=2, ensure_ascii=False)
+    return json.dumps(diff, indent=None, separators=(",", ": "), ensure_ascii=False).replace("\\n", "").rstrip()
