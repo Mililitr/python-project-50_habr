@@ -1,5 +1,6 @@
 import json
 
+
 def format_diff_as_json(diff):
     """Возвращает JSON-строку с отформатированным результатом сравнения.
     Args:
@@ -8,4 +9,3 @@ def format_diff_as_json(diff):
         Отформатированный результат сравнения в виде JSON-строки.
     """
     return json.dumps(diff, indent=4)
-

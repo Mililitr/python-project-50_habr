@@ -2,6 +2,7 @@ import argparse
 from gendiff.generate_diff import generate_diff
 from gendiff.formatters import stylish, plain, as_json
 
+
 def main():
     parser = argparse.ArgumentParser(description='Generate diff', formatter_class=argparse.RawTextHelpFormatter)
     parser.add_argument('filepath1', type=str, help='path to first file')
@@ -21,6 +22,7 @@ def main():
         print(as_json.format_diff_as_json(diff))
     else:
         raise ValueError(f'Unknown format: {args.format}')
+
 
 if __name__ == '__main__':
     main()

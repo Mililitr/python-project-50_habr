@@ -1,5 +1,3 @@
-import json
-import yaml
 import os
 from gendiff.formatters.stylish import format_diff_as_stylish
 from gendiff.formatters.plain import format_diff_as_plain
@@ -34,6 +32,7 @@ def make_diff(data1, data2, parent=None):
             diff[path_str] = ("unchanged", data1[key])
     return diff
 
+
 def generate_diff(filepath1, filepath2, output_format='stylish'):
     filepath1_abs = os.path.abspath(filepath1)
     filepath2_abs = os.path.abspath(filepath2)
@@ -46,4 +45,3 @@ def generate_diff(filepath1, filepath2, output_format='stylish'):
         return format_diff_as_json(diff)
     else:
         raise ValueError(f'Unknown format: {output_format}')
-

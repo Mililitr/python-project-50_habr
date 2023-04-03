@@ -1,6 +1,4 @@
 import os
-import yaml
-import json
 from gendiff.parser import parse
 
 

@@ -1,10 +1,8 @@
 import argparse
-from gendiff.formatters import stylish, plain, json
+from gendiff.generate_diff import generate_diff
 from gendiff.formatters.stylish import format_diff_as_stylish
 from gendiff.formatters.plain import format_diff_as_plain
 from gendiff.formatters.as_json import format_diff_as_json
-from gendiff.parser import parse
-
 
 FORMATTERS = {
     'stylish': format_diff_as_stylish,

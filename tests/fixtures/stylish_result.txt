@@ -1,0 +1,12 @@
+{
+    - timeout: updated
+    + timeout: (50, 20)
+    - verbose: added
+    + verbose: True
+    - host: unchanged
+    + host: hexlet.io
+    - follow: deleted
+    + follow: False
+    - proxy: deleted
+    + proxy: 123.234.53.22
+}
