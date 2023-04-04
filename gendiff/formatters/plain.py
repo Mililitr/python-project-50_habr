@@ -6,7 +6,8 @@ def format_diff_as_plain(diff, path=''):
         if isinstance(value, dict):
             lines.append(format_diff_as_plain(value, f"{path}{key}."))
         elif isinstance(value, list):
-            lines.append(format_diff_as_plain(value, f"{path}{key}[{i}]."))
+            for i, item in enumerate(value):
+                lines.append(format_diff_as_plain(item, f"{path}{key}[{i}]."))
         else:
             if value is None:
                 value = 'null'
