@@ -16,6 +16,7 @@ engines:
       bandit:
         enabled: true
 
+
 checks:
   duplication:
     enabled: true
@@ -26,3 +27,10 @@ checks:
       - 'tests/**'
       - '**/.venv/**'
       - '**/myenv/**'
+
+
+  test_coverage:
+    enabled: true
+    output_format: "lcov"
+    path: "tests/"
+    min_coverage: 80
