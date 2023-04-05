@@ -15,6 +15,11 @@ engines:
           messages_only: true
       bandit:
         enabled: true
+    coverage:
+      enabled: true
+      output_format: "lcov"
+      path: "coverage.xml"
+      min_coverage: 80
 
 
 checks:
