@@ -39,3 +39,10 @@ checks:
     output_format: "lcov"
     path: "tests/"
     min_coverage: 80
+
+
+prepare:
+  fetch:
+    - "pip install -r requirements.txt"
+  override:
+    - command: pytest tests/ --cov=.
