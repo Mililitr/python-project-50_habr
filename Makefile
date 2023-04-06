@@ -19,8 +19,7 @@ package-install:
 
 
 lint:
-	flake8
-
+	poetry run flake8 gendiff
 
 test:
 	poetry run pytest
