@@ -17,7 +17,7 @@ def format_diff_as_stylish(diff):
         for key, value in diff.items():
             if isinstance(value, dict):
                 result.append(f"    {' ' * depth}{key}: {format_dict(value, depth + 4)}")
-            elif len(value) == 2:
+            elif isinstance(value, tuple) and len(value) == 2:
                 old_value, new_value = value
                 result.append(f"    {' ' * depth}- {key}: {format_value(old_value, depth + 4)}")
                 result.append(f"    {' ' * depth}+ {key}: {format_value(new_value, depth + 4)}")
