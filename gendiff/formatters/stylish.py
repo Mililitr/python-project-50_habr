@@ -27,7 +27,7 @@ def format_diff_as_stylish(diff):
                 result.append(f"    {' ' * depth}- {key}: {format_value(diff[key][0], depth + 4)}")
             else:
                 result.append(f"    {' ' * depth}  {key}: {format_value(value, depth + 4)}")
-        return "{\n" + "\n".join(result) + f"\n{' ' * depth}}}"
+        return "{\n" + "\n".join(result) + f"\n{'' * depth}}}"
 
     if isinstance(diff, str):
         _, extension = os.path.splitext(diff)
