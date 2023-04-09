@@ -2,37 +2,52 @@ import os
 from gendiff.parser import parse
 
 
-def format_diff_as_stylish(diff):
-    def format_value(value, depth):
+SPACES = '    '
+ADDED = '  + '
+REMOVED = '  - '
+
+
+def format_value(value, depth):
+    if isinstance(value, dict):
+        return format_dict(value, depth + 1)
+    else:
+        return str(value)
+
+
+def format_dict(diff, depth=0):
+    if not isinstance(diff, dict):
+        return str(diff)
+
+    lines = []
+    for key, value in diff.items():
         if isinstance(value, dict):
-            return format_dict(value, depth + 1)
+            value = format_dict(value, depth + 1)
+            lines.append(f"{SPACES * (depth + 2)}{key.strip()}: {value}")
+        elif value == "added":
+            value = format_value(diff[key][1], depth + 1)
+            lines.append(f"{ADDED}{SPACES * (depth + 2)}{key.strip()}: {value}")
+        elif value == "deleted":
+            value = format_value(diff[key][0], depth + 1)
+            lines.append(f"{REMOVED}{SPACES * (depth + 2)}{key.strip()}: {value}")
+        elif isinstance(value, tuple) and len(value) == 2:
+            old_value, new_value = value
+            old_value = format_value(old_value, depth + 1)
+            new_value = format_value(new_value, depth + 1)
+            lines.append(f"{REMOVED}{SPACES * (depth + 2)}{key.strip()}: {old_value}")
+            lines.append(f"{ADDED}{SPACES * (depth + 2)}{key.strip()}: {new_value}")
         else:
-            return str(value)
+            value = format_value(value, depth + 1)
+            lines.append(f"{SPACES * (depth + 2)}{key.strip()}: {value}")
 
-    def format_dict(diff, depth=0):
-        if not isinstance(diff, dict):
-            return str(diff)
+    return "\n".join(lines)
 
-        result = []
-        for key, value in diff.items():
-            if isinstance(value, dict):
-                result.append(f"    {' ' * depth}{key}: {format_dict(value, depth + 4)}")
-            elif isinstance(value, tuple) and len(value) == 2:
-                old_value, new_value = value
-                result.append(f"    {' ' * depth}- {key}: {format_value(old_value, depth + 4)}")
-                result.append(f"    {' ' * depth}+ {key}: {format_value(new_value, depth + 4)}")
-            elif value == 'added':
-                result.append(f"    {' ' * depth}+ {key}: {format_value(diff[key][1], depth + 4)}")
-            elif value == 'deleted':
-                result.append(f"    {' ' * depth}- {key}: {format_value(diff[key][0], depth + 4)}")
-            else:
-                result.append(f"    {' ' * depth}  {key}: {format_value(value, depth + 4)}")
-        return "{\n" + "\n".join(result) + f"\n{'' * depth}}}"
 
+def format_diff_as_stylish(diff):
     if isinstance(diff, str):
         _, extension = os.path.splitext(diff)
         if extension in ('.yml', '.yaml'):
             diff = parse(diff)
-            return format_dict(diff)
+        else:
+            return str(diff)
 
     return format_dict(diff)
