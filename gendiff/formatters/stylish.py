@@ -2,52 +2,34 @@ import os
 from gendiff.parser import parse
 
 
-SPACES = '    '
-ADDED = '  + '
-REMOVED = '  - '
-
-
-def format_value(value, depth):
-    if isinstance(value, dict):
-        return format_dict(value, depth + 1)
-    else:
-        return str(value)
-
-
-def format_dict(diff, depth=0):
-    if not isinstance(diff, dict):
-        return str(diff)
-
-    lines = []
-    for key, value in diff.items():
-        if isinstance(value, dict):
-            value = format_dict(value, depth + 1)
-            lines.append(f"{SPACES * (depth + 1)}{key.strip()}: {value}")
-        elif value == "added":
-            value = format_value(diff[key][1], depth + 1)
-            lines.append(f"{ADDED}{SPACES * (depth + 1)}{key.strip()}: {value}")
-        elif value == "deleted":
-            value = format_value(diff[key][0], depth + 1)
-            lines.append(f"{REMOVED}{SPACES * (depth + 1)}{key.strip()}: {value}")
-        elif isinstance(value, tuple) and len(value) == 2:
-            old_value, new_value = value
-            old_value = format_value(old_value, depth + 1)
-            new_value = format_value(new_value, depth + 1)
-            lines.append(f"{REMOVED}{SPACES * (depth + 1)}{key.strip()}: {old_value}")
-            lines.append(f"{ADDED}{SPACES * (depth + 1)}{key.strip()}: {new_value}")
-        else:
-            value = format_value(value, depth + 1)
-            lines.append(f"{SPACES * (depth + 1)}{key.strip()}: {value}")
-
-    return "\n".join(lines)
+def build_indent(depth):
+    return " " * (depth * 4)
 
 
 def format_diff_as_stylish(diff):
-    if isinstance(diff, str):
-        _, extension = os.path.splitext(diff)
-        if extension in ('.yml', '.yaml'):
-            diff = parse(diff)
+    def format_value(value, depth):
+        if isinstance(value, dict):
+            lines = []
+            for key, inner_value in value.items():
+                lines.append(f"{build_indent(depth + 1)}{key}: {format_value(inner_value, depth + 1)}")
+            return "{{\n" + "\n".join(lines) + f"\n{build_indent(depth)}}}"
         else:
-            return str(diff)
+            return str(value)
 
+    def format_dict(diff, depth=1):
+        if not isinstance(diff, dict):
+            return str(diff)
+        lines = []
+        for key, (status, value) in diff.items():
+            if status == "added":
+                lines.append(f"{build_indent(depth)}+ {key}: {format_value(value, depth)}")
+            elif status == "removed":
+                lines.append(f"{build_indent(depth)}- {key}: {format_value(value, depth)}")
+            elif status == "changed":
+                old_value, new_value = value
+                lines.append(f"{build_indent(depth)}- {key}: {format_value(old_value, depth)}")
+                lines.append(f"{build_indent(depth)}+ {key}: {format_value(new_value, depth)}")
+            else:
+                lines.append(f"{build_indent(depth)}  {key}: {format_value(value, depth)}")
+        return "{\n" + "\n".join(lines) + "\n" + build_indent(depth - 1) + "}"
     return format_dict(diff)
