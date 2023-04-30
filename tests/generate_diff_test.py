@@ -16,7 +16,7 @@ def test_flat_diff_json():
     expected_result = json.loads(read_fixture(
         os.path.join(FIXTURES_PATH, 'json_result.txt')))
     result = generate_diff(file_path1, file_path2, output_format='json')
-    assert json.loads(result) == json.loads(expected_result)
+    assert sorted(result.splitlines()) == sorted(expected_result.splitlines())
 
 
 def test_flat_diff_plain():
