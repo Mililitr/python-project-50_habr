@@ -6,30 +6,33 @@ from gendiff.parser import parse
 
 
 def make_diff(data1, data2, parent=None):
-    """Сравнивает два словаря и формирует результат.
+    """
+    Сравнивает два словаря и формирует результат.
+
     Args:
         data1: первый словарь.
         data2: второй словарь.
         parent: родительский ключ.
+
     Returns:
-        Результат сравнения в виде словаря.
+        Результат сравнения в виде списка словарей.
     """
     if parent is None:
         parent = []
-    diff = {}
+    diff = []
     for key in data1.keys() | data2.keys():
         path = [*parent, key]
-        path_str = '.'.join(path)
+        path_str = '.'.join(str(p) for p in path)
         if key not in data1:
-            diff[path_str] = ("added", data2[key])
+            diff.append({'path': path_str, 'status': 'added', 'value': data2[key]})
         elif key not in data2:
-            diff[path_str] = ("deleted", data1[key])
+            diff.append({'path': path_str, 'status': 'deleted', 'value': data1[key]})
         elif data1[key] != data2[key]:
-            diff[path_str] = ("updated", (data1[key], data2[key]))
+            diff.append({'path': path_str, 'status': 'updated', 'value': (data1[key], data2[key])})
         elif isinstance(data1[key], (dict, list)) and isinstance(data2[key], (dict, list)):
-            diff.update(make_diff(data1[key], data2[key], path))
+            diff.extend(make_diff(data1[key], data2[key], path))
         else:
-            diff[path_str] = ("unchanged", data1[key])
+            diff.append({'path': path_str, 'status': 'unchanged', 'value': data1[key]})
     return diff
 
 
