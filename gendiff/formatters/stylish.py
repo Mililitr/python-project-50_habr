@@ -49,19 +49,24 @@ def format_dict(diff, depth=1):
     if not isinstance(diff, dict):
         return str(diff)
     lines = []
-    for key, (status, value) in diff.items():
-        if status == "added":
-            diff_obj = AddedDiff(key, value, depth)
-        elif status == "removed":
-            diff_obj = RemovedDiff(key, value, depth)
-        elif status == "changed":
+    for item in diff:
+        key = item['key']
+        status = item['status']
+        value = item['value']
+        indent = build_indent(depth)
+        formatted_value = format_value(value, depth)
+        if status == 'added':
+            lines.append(f"{indent}+ {key}: {formatted_value}")
+        elif status == 'removed':
+            lines.append(f"{indent}- {key}: {formatted_value}")
+        elif status == 'changed':
             old_value, new_value = value
-            diff_obj = ChangedDiff(key, old_value, new_value, depth)
-        else:
-            diff_obj = UnchangedDiff(key, value, depth)
-        lines.append(diff_obj.format())
-    return "{\n" + "\n".join(lines) + "\n" + build_indent(depth - 1) + "}"
+            lines.append(f"{indent}- {key}: {format_value(old_value, depth)}")
+            lines.append(f"{indent}+ {key}: {format_value(new_value, depth)}")
+        elif status == 'unchanged':
+            lines.append(f"{indent}  {key}: {formatted_value}")
+    return "\n".join(lines)
 
 
 def format_diff_as_stylish(diff):
-    return format_dict(diff)
+    return "\n" + format_dict(diff) + "\n"
