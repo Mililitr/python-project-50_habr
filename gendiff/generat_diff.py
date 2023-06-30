@@ -19,7 +19,6 @@ def get_data(file_path):
         data = f.read()
         return parse(data, file_format)
 
-
 def build_diff(file1, file2):
     diff = []
     for key in sorted(set(file1) | set(file2)):
@@ -41,7 +40,7 @@ def build_diff(file1, file2):
                 diff.append({
                     "key": key,
                     "status": 'nested',
-                    "value": nested_diff
+                    "children": nested_diff
                 })
         elif file1[key] == file2[key]:
             diff.append({
