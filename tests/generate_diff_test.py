@@ -1,6 +1,6 @@
 import os
 import json
-from gendiff.generat_diff import generate_diff
+from gendiff.generate_diff import generate_diff
 
 FIXTURES_PATH = os.path.join(os.path.dirname(__file__), 'fixtures')
 
