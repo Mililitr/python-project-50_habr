@@ -1,53 +1,41 @@
-from gendiff.parser import parse
+def build_indent(depth):
+    return " " * (depth * 4 - 2)
 
 
-class AddedDiff:
-    def __init__(self, key, value, depth):
-        self.key = key
-        self.value = value
-        self.depth = depth
-
-    def format(self):
-        return f"{build_indent(self.depth)}+ {self.key}: {format_value(self.value, self.depth)}"
-
-
-class RemovedDiff:
-    def __init__(self, key, value, depth):
-        self.key = key
-        self.value = value
-        self.depth = depth
-
-    def format(self):
-        return f"{build_indent(self.depth)}- {self.key}: {format_value(self.value, self.depth)}"
-
-
-class ChangedDiff:
-    def __init__(self, key, old_value, new_value, depth):
-        self.key = key
-        self.old_value = old_value
-        self.new_value = new_value
-        self.depth = depth
-
-    def format(self):
+def format_value(value, depth):
+    if isinstance(value, dict):
         lines = []
-        lines.append(f"{build_indent(self.depth)}- {self.key}: {format_value(self.old_value, self.depth)}")
-        lines.append(f"{build_indent(self.depth)}+ {self.key}: {format_value(self.new_value, self.depth)}")
-        return "\n".join(lines)
+        for key, val in value.items():
+            indent = build_indent(depth + 1)
+            formatted_value = format_value(val, depth + 1)
+            lines.append(f"{indent}  {key}: {formatted_value}")
+        return "{{\n{}\n{}}}".format("\n".join(lines), build_indent(depth))
+    elif isinstance(value, list):
+        lines = []
+        for val in value:
+            indent = build_indent(depth + 1)
+            formatted_value = format_value(val, depth + 1)
+            lines.append(f"{indent}- {formatted_value}")
+        return "[\n{}\n{}]".format("\n".join(lines), build_indent(depth))
+    return stringify(value, depth)
 
 
-class UnchangedDiff:
-    def __init__(self, key, value, depth):
-        self.key = key
-        self.value = value
-        self.depth = depth
-
-    def format(self):
-        return f"{build_indent(self.depth)}  {self.key}: {format_value(self.value, self.depth)}"
+def stringify(data, depth):
+    if isinstance(data, bool):
+        return 'true' if data else 'false'
+    if data is None:
+        return 'null'
+    if isinstance(data, dict):
+        return format_value(data, depth)
+    if isinstance(data, list):
+        return format_value(data, depth)
+    return str(data)
 
 
 def format_dict(diff, depth=1):
     if not isinstance(diff, dict):
         return str(diff)
+
     lines = []
     for item in diff:
         key = item['key']
@@ -55,6 +43,7 @@ def format_dict(diff, depth=1):
         value = item['value']
         indent = build_indent(depth)
         formatted_value = format_value(value, depth)
+
         if status == 'added':
             lines.append(f"{indent}+ {key}: {formatted_value}")
         elif status == 'removed':
@@ -65,6 +54,7 @@ def format_dict(diff, depth=1):
             lines.append(f"{indent}+ {key}: {format_value(new_value, depth)}")
         elif status == 'unchanged':
             lines.append(f"{indent}  {key}: {formatted_value}")
+
     return "\n".join(lines)
 
 
