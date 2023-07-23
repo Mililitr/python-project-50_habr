@@ -10,7 +10,6 @@ poetry.lock
 __init__.py
 requirements.txt
 pytest.ini
-.flake8
 .coverage
 cc-test-reporter
 .xml
