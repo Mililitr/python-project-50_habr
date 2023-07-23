@@ -65,6 +65,6 @@ def generate_diff(file_path1, file_path2, format_name='stylish'):
     if format_name == 'stylish':
         return format_diff_as_stylish(diff)
     elif format_name == "plain":
-        return diff
+        return format_diff_as_plain(diff)
     elif format_name == 'json':
         return format_diff_as_json(diff)
