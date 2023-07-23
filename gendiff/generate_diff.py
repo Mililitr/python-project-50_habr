@@ -19,6 +19,7 @@ def get_data(file_path):
         data = f.read()
         return parse(data, file_format)
 
+
 def build_diff(file1, file2):
     diff = []
     for key in sorted(set(file1) | set(file2)):

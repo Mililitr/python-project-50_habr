@@ -2,6 +2,7 @@ import json
 from gendiff.formatters.stylish import format_diff_as_stylish
 from gendiff.generate_diff import generate_diff
 
+
 def format(data, formatter='stylish'):
     if formatter == 'stylish':
         return stylish.format(data)
