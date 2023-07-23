@@ -1,8 +1,8 @@
-Property 'Ducks' was updated. From added to Are cool creatures
-Property 'I_like' was updated. From added to big ducks and I cannot lie
-Property 'author' was updated. From deleted to {'name': 'Duck', 'email': 'duck@example.com (this is a fake email)'}
-Property 'favorite_color' was updated. From added to yellow
-Property 'language' was updated. From deleted to Why Python? Why not Sssssssssssnake+?
-Property 'number_of_ducks' was updated. From added to 99
-Property 'repository' was updated. From deleted to myrepo (not to be confused with trash)
-Property 'version' was updated. From deleted to 3.8 (eat five)
+Property 'Ducks' was added with value: 'Are cool creatures'
+Property 'I_like' was added with value: 'big ducks and I cannot lie'
+Property 'author' was removed
+Property 'favorite_color' was added with value: 'yellow'
+Property 'language' was removed
+Property 'number_of_ducks' was added with value: 99
+Property 'repository' was removed
+Property 'version' was removed
