@@ -1,0 +1,8 @@
+Property 'Ducks' was added with value: 'Are cool creatures'
+Property 'I_like' was added with value: 'big ducks and I cannot lie'
+Property 'favorite_color' was added with value: 'yellow'
+Property 'follow' was removed
+Property 'host' was removed
+Property 'number_of_ducks' was added with value: 99
+Property 'proxy' was removed
+Property 'timeout' was removed

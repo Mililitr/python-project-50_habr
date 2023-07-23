@@ -1,0 +1,15 @@
+Property 'common.follow' was changed. From false to true
+Property 'common.setting1' was changed. From 'Value 1' to 'Value 2'
+Property 'common.setting4' was changed. From 'quack quack' to 'honk honk'
+Property 'common.setting5.key5' was changed. From 'value5' to 'value6'
+Property 'common.setting6' was added with value: [complex value]
+Property 'group1.baz' was changed. From 'quack quack' to 'honk honk'
+Property 'group1.duck.age' was changed. From 3 to 5
+Property 'group1.foo' was changed. From 'quack' to 'honk'
+Property 'group1.nest' was changed. From 'quack quack quack' to 'honk honk honk'
+Property 'group2.beep' was changed. From 'quack' to 'honk'
+Property 'group2.boop' was changed. From 'quack quack' to 'honk honk'
+Property 'group2.duck.age' was changed. From 1 to 2
+Property 'group2.duck.type' was changed. From 'rubber' to 'wood'
+Property 'group2.nest.material' was changed. From 'plastic' to 'wood'
+Property 'group2.nest.size' was changed. From 'small' to 'medium'
