@@ -1,0 +1,8 @@
+{
+  "animal": "duck",
+  "sound": "quack",
+  "count": 3,
+  "colors": ["yellow", "blue", "green"],
+  "is_swimmer": true,
+  "favorite_food": {"breakfast": "bread", "lunch": "lettuce", "dinner": "fish"]
+}

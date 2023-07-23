@@ -1,5 +1,6 @@
 import os
 import unittest
+import yaml
 from gendiff.parser import parse
 
 
@@ -20,6 +21,7 @@ class TestParse(unittest.TestCase):
         result = parse(filepath)
         self.assertEqual(result, expected_result)
 
+
     def test_parse_yaml(self):
         # Путь к файлу YAML в fixtures
         filepath = os.path.join(os.path.dirname(__file__), 'fixtures', 'file1.yml')
@@ -39,12 +41,40 @@ class TestParse(unittest.TestCase):
         result = parse(filepath)
         self.assertEqual(result, expected_result)
 
+
     def test_parse_invalid_extension(self):
         # Путь к пустому файлу JSON в fixtures
         filepath = os.path.join(os.path.dirname(__file__), 'fixtures', 'empty_file.json')
 
         # Проверка на возникновение ValueError
         with self.assertRaises(ValueError):
+            parse(filepath)
+
+
+    def test_parse_invalid_extension(self):
+        # Путь к файлу с некорректным расширением в fixtures
+        filepath = os.path.join(os.path.dirname(__file__), 'fixtures', 'file1.txt')
+
+        # Проверка на возникновение ValueError при некорректном расширении файла
+        with self.assertRaises(ValueError):
+            parse(filepath)
+
+
+    def test_parse_invalid_json(self):
+        # Путь к файлу с некорректным JSON содержимым в fixtures
+        filepath = os.path.join(os.path.dirname(__file__), 'fixtures', 'invalid_file.json')
+
+        # Проверка на возникновение ValueError при некорректном JSON содержимом
+        with self.assertRaises(ValueError):
+            parse(filepath)
+
+
+    def test_parse_invalid_yaml(self):
+        # Путь к файлу с некорректным YAML содержимым в fixtures
+        filepath = os.path.join(os.path.dirname(__file__), 'fixtures', 'invalid_file.yml')
+
+        # Проверка на возникновение ScannerError при некорректном YAML содержимом
+        with self.assertRaises(yaml.scanner.ScannerError):
             parse(filepath)
 
 
