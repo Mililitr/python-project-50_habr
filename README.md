@@ -5,10 +5,12 @@
 <a href="https://codeclimate.com/github/HardDuck69/python-project-50/test_coverage"><img src="https://api.codeclimate.com/v1/badges/092e73742602e1e67d62/test_coverage" /></a>
 
 [![Typing SVG](https://readme-typing-svg.herokuapp.com?font=Fira+Code&pause=1000&color=F7CB00&width=435&lines=Description%3A)](https://git.io/typing-svg)
-The program generates differences between JSON and YAML files.
+
+###The program generates differences between JSON and YAML files.
 
 [![Typing SVG](https://readme-typing-svg.herokuapp.com?font=Fira+Code&pause=1000&color=F7CB00&width=435&lines=Installation%3A)](https://git.io/typing-svg)
-git clone git@github.com:HardDuck69/python-project-50.git
+
+###git clone git@github.com:HardDuck69/python-project-50.git
 
 [![Typing SVG](https://readme-typing-svg.herokuapp.com?font=Fira+Code&pause=1000&color=F7CB00&width=435&lines=Requirements%3A)](https://git.io/typing-svg)
 * python = "^3.8"
