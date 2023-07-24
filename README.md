@@ -6,7 +6,7 @@
 [![Python CI](https://github.com/HardDuck69/python-project-50/actions/workflows/pyci.yml/badge.svg?branch=main)](https://github.com/HardDuck69/python-project-50/actions/workflows/pyci.yml)
 
 <div id="header" align="center">
-  <img src="https://media.giphy.com/media/M9gbBd9nbDrOTu1Mqx/giphy.gif" width="200"/>
+  <img src="https://media.giphy.com/media/zOvBKUUEERdNm/giphy.gif" width="200"/>
 </div>
 
 [![Typing SVG](https://readme-typing-svg.herokuapp.com?font=Fira+Code&pause=1000&color=F7CB00&width=435&lines=Description%3A)](https://git.io/typing-svg)
