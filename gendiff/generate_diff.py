@@ -1,23 +1,8 @@
-import json
-import yaml
 from pathlib import Path
 from gendiff.formatters.stylish import format_diff_as_stylish
 from gendiff.formatters.plain import format_diff_as_plain
 from gendiff.formatters.as_json import format_diff_as_json
-
-
-def parse(data, file_format):
-    if file_format == ".json":
-        return json.loads(data)
-    elif file_format in (".yml", ".yaml"):
-        return yaml.safe_load(data)
-
-
-def get_data(file_path):
-    file_format = Path(file_path).suffix
-    with open(file_path) as f:
-        data = f.read()
-        return parse(data, file_format)
+from gendiff.parser import parse, get_data
 
 
 def build_diff(file1, file2):
