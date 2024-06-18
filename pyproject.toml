@@ -1,7 +1,7 @@
 [tool.poetry]
 name = "hexlet-code"
 version = "0.1.0"
-description = ""
+description = "The program generates differences between JSON and YAML files."
 authors = ["HardDuck69 <tmu1408@gmail.com>"]
 readme = "README.md"
 packages = [
