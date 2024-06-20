@@ -1,16 +1,16 @@
-def format_diff_as_plain(diff):
-    def format_value(value):
-        if isinstance(value, dict) or isinstance(value, list):
-            return "[complex value]"
-        elif value is None:
-            return "null"
-        elif isinstance(value, bool):
-            return "true" if value else "false"
-        elif isinstance(value, str):
-            return f"'{value}'"
-        else:
-            return str(value)
+def format_value(value):
+    if isinstance(value, dict) or isinstance(value, list):
+        return "[complex value]"
+    elif value is None:
+        return "null"
+    elif isinstance(value, bool):
+        return "true" if value else "false"
+    elif isinstance(value, str):
+        return f"'{value}'"
+    else:
+        return str(value)
 
+def format_diff_as_plain(diff):
     def node_format(node, ancestry=''):
         if isinstance(node, str):
             return node  # If the node is a string, return it as is
