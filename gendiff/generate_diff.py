@@ -1,7 +1,7 @@
 from pathlib import Path
 from gendiff.formatters.stylish import format_diff_as_stylish
 from gendiff.formatters.plain import format_diff_as_plain
-from gendiff.formatters.as_json import format_diff_as_json
+from gendiff.formatters.json_format import format_diff_as_json
 from gendiff.parser import parse, get_data
 
 
