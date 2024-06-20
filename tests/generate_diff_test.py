@@ -4,17 +4,14 @@ from gendiff.generate_diff import generate_diff
 
 FIXTURES_PATH = os.path.join(os.path.dirname(__file__), 'fixtures')
 
-
 def read_fixture(file_path):
     with open(file_path) as f:
         return f.read()
 
-
 def test_flat_diff_json():
     file_path1 = os.path.join(FIXTURES_PATH, 'file1.json')
     file_path2 = os.path.join(FIXTURES_PATH, 'file2.json')
-    expected_result = json.loads(read_fixture(
-        os.path.join(FIXTURES_PATH, 'json_result.txt')))
+    expected_result = json.loads(read_fixture(os.path.join(FIXTURES_PATH, 'json_result.txt')))
     result = generate_diff(file_path1, file_path2, format_name='json')
     assert result == expected_result
 
