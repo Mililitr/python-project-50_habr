@@ -1,5 +1,3 @@
-import argparse
-from gendiff.generate_diff import generate_diff
 from gendiff.formatters.stylish import format_diff_as_stylish
 from gendiff.formatters.plain import format_diff_as_plain
 from gendiff.formatters.as_json import format_diff_as_json
@@ -10,33 +8,11 @@ FORMATTERS = {
     'json': format_diff_as_json,
 }
 
-
-def format_diff(diff, format_name):
-    if format_name in FORMATTERS:
-        formatter = FORMATTERS[format_name]
+def generate_diff(file1, file2, format_name):
+    # Здесь реализуйте функцию generate_diff
+    diff = {}  # Предполагаемый результат функции generate_diff
+    formatter = FORMATTERS.get(format_name)
+    if formatter:
         return formatter(diff)
     else:
         raise ValueError(f'Unknown format: {format_name}')
-
-
-def main():
-    parser = argparse.ArgumentParser(
-        description='Generate diff',
-        formatter_class=argparse.RawTextHelpFormatter
-    )
-    parser.add_argument('first_file')
-    parser.add_argument('second_file')
-    parser.add_argument(
-        '-f', '--format',
-        help='set format of output',
-        choices=FORMATTERS.keys(),
-        default='stylish'
-    )
-    args = parser.parse_args()
-
-    diff = generate_diff(args.first_file, args.second_file)
-    print(format_diff(diff, args.format))
-
-
-if __name__ == '__main__':
-    main()
